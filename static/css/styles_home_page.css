@@ -1,0 +1,96 @@
+/* static/css/styles_home_page.css */
+
+/* Сброс стандартных отступов и центрирование всего контента */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+/* Основной контейнер для контента */
+.container {
+    max-width: 800px;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+/* Стиль для текста "Это картошка" */
+.intro-text {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+/* Стиль для изображения картошки */
+.potato-image {
+    width: 240px;
+    height: 240px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    object-fit: cover;
+}
+
+/* Стиль для блока времени */
+.time-container {
+    margin: 25px 0;
+    font-size: 18px;
+}
+
+/* Стиль для отображения времени */
+#current-time {
+    font-weight: bold;
+    color: #e74c3c;
+    font-size: 22px;
+}
+
+/* Стиль для кнопки */
+.button {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+}
+
+.button:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(41, 128, 185, 0.4);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+        margin-top: 30px;
+    }
+
+    .potato-image {
+        width: 200px;
+        height: 200px;
+    }
+
+    .intro-text {
+        font-size: 20px;
+    }
+
+    .button {
+        padding: 10px 25px;
+    }
+}

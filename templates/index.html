@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home page</title>
+   <link rel="stylesheet" href="static/css/styles_home_page.css">
+    <meta charset="utf-8">
+    <script>
+        // Серверное время при загрузке страницы
+        const serverTime = new Date("{{ time }}".replace(/(\d+).(\d+).(\d+), (\d+):(\d+):(\d+)/, "$3-$2-$1T$4:$5:$6"));
+
+        function updateGlobalTime() {
+            const timePassed = Date.now() - pageLoadTime;
+            const currentTime = new Date(serverTime.getTime() + timePassed);
+
+            const hours = currentTime.getHours().toString().padStart(2, '0');
+            const minutes = currentTime.getMinutes().toString().padStart(2, '0');
+            const seconds = currentTime.getSeconds().toString().padStart(2, '0');
+
+            document.getElementById('current-time').textContent = `${hours}:${minutes}:${seconds}`;
+            requestAnimationFrame(updateGlobalTime);
+        }
+
+        const pageLoadTime = Date.now();
+
+        window.onload = function() {
+            updateGlobalTime();
+        };
+    </script>
+</head>
+
+<body>
+    <p>Это картошка</p>
+    <img src="static/image/potato.jpg" alt="img" width="240" height="240">
+    <p>А сейчас <span id="current-time">{{ time }}</span></p>
+    <a href="/potatoes" class="button">Перейти в картошки</a>
+</body>
+</html>
