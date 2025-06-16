@@ -8,7 +8,6 @@ from core.models import db_helper
 
 router = APIRouter(tags=["Potato"])
 
-
 @router.get('/', response_model=list[Potato_gun])
 async def get_potato(
 		session: AsyncSession = Depends(db_helper.scoped_session_dependency),

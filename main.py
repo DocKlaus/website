@@ -7,7 +7,9 @@ from fastapi.responses import HTMLResponse
 from datetime import datetime
 import uvicorn
 
-from .core.models import Base, db_helper
+from api_v1 import router as router_v1
+from core.models import Base, db_helper
+from core.config import settings
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -16,7 +18,8 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
+app.include_router(router_v1, prefix=settings.api_v1_prefix)
 
 # Подключаем статические файлы
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -29,13 +32,6 @@ async def index(request: Request):
     return templates.TemplateResponse(
         "index.html",
         {"request": request, "time": curr_time}
-    )
-
-@app.get("/potatoes", response_class=HTMLResponse)
-async def second_page(request: Request):
-    return templates.TemplateResponse(
-        "potatoes.html",
-        {"request": request, "message": "Это станица с картошко-пушками"}
     )
 
 if __name__ == "__main__":
